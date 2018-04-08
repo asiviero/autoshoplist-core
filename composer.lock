@@ -4,8 +4,34 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b994239d90bd84f6046f66a2349ec4b0",
+    "content-hash": "9d5fda6f721b05f8eceef42698f1c5cb",
     "packages": [
+        {
+            "name": "asiviero/php-dijkstra",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/asiviero/PHP-Dijkstra.git",
+                "reference": "5c0fcc518428a3610f3b6112c2f2940a08da98d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/asiviero/PHP-Dijkstra/zipball/5c0fcc518428a3610f3b6112c2f2940a08da98d8",
+                "reference": "5c0fcc518428a3610f3b6112c2f2940a08da98d8",
+                "shasum": ""
+            },
+            "type": "module",
+            "autoload": {
+                "psr-4": {
+                    "Dijkstra\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "time": "2018-04-08T20:30:49+00:00"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.6.0",
@@ -5908,6 +5934,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "asiviero/php-dijkstra": 20,
         "symfony/lts": 20
     },
     "prefer-stable": false,

@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
-use Doctrine\ORM\EntityRepository;
-use App\Entity\Quantity;
+use Dijkstra\Graph;
 use App\Entity\Unit;
+use App\Entity\Quantity;
+use Doctrine\ORM\EntityRepository;
 
 class QuantityRepository extends EntityRepository
 {
@@ -15,26 +16,15 @@ class QuantityRepository extends EntityRepository
         }
         // Check for rule 
         $qb = $this->getEntityManager()->createQueryBuilder();
-        $result = $qb->select('c')
-            ->from('App:ConversionRule', 'c')
-            ->where('c.ingredient = :ingredient')
-            ->setParameter(':ingredient', $qty->getIngredient())
-            ->andWhere(
-                $qb->expr()->orX(
-                    'c.from = :from and c.to = :to',
-                    'c.from = :to and c.to = :from'
-                )
-            )
-            ->setParameter(':from', $qty->getUnit())
-            ->setParameter(':to', $unit)
-            ->getQuery()->getResult();
-        $rule = reset($result);
-        $factor = $rule->getFactor();
-        if($rule->getTo() == $unit) {
-            $factor = 1/$factor;
+        $repoConversion = $this->getEntityManager()->getRepository('App\Entity\ConversionRule');
+        $rules = $repoConversion->getRulesForIngredient($qty->getIngredient());
+        $graph = new Graph();
+        foreach($rules as $rule) {
+            $graph->addedge($rule->from->getSymbol(), $rule->to->getSymbol(), $rule->getFactor());
+            $graph->addedge($rule->to->getSymbol(), $rule->from->getSymbol(), 1/$rule->getFactor());
         }
-        $amount = $factor * $qty->getAmount();
-        return new Quantity($amount, $unit, $qty->getIngredient());
+        list($path, $weight) = $graph->getpath($qty->getUnit()->getSymbol(), $unit->getSymbol());
+        return new Quantity(array_product($weight), $unit, $qty->getIngredient());
     }
 
     public function sum(Quantity $a, Quantity $b)

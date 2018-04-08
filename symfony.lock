@@ -1,4 +1,7 @@
 {
+    "asiviero/php-dijkstra": {
+        "version": "dev-master"
+    },
     "behat/behat": {
         "version": "v3.4.3"
     },

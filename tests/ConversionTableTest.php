@@ -13,16 +13,20 @@ class ConversionTableTest extends DatabaseTest
     {
         parent::setUp();
         $this->un = new Unit('unit', 'un');
+        $this->cup = new Unit('cup', 'cup');
         $this->kg = new Unit('kilogram', 'kg');
         $this->tomato = new Ingredient('tomato', $this->un);
         $this->potato = new Ingredient('potato', $this->un);
-        $conversionTomato = new ConversionRule($this->tomato, 0.4, $this->kg, $this->un);
-        $conversionPotato = new ConversionRule($this->potato, 0.6, $this->kg, $this->un);
+        $conversionTomato = new ConversionRule($this->tomato, $this->un, 0.4, $this->kg);
+        $conversionTomato2 = new ConversionRule($this->tomato, $this->cup, 0.8, $this->un);
+        $conversionPotato = new ConversionRule($this->potato, $this->un, 0.6, $this->kg);
         $this->entityManager->persist($this->un);
+        $this->entityManager->persist($this->cup);
         $this->entityManager->persist($this->kg);        
         $this->entityManager->persist($this->tomato);
         $this->entityManager->persist($this->potato);
         $this->entityManager->persist($conversionTomato);
+        $this->entityManager->persist($conversionTomato2);
         $this->entityManager->persist($conversionPotato);
         $this->entityManager->flush();
     }
@@ -31,7 +35,7 @@ class ConversionTableTest extends DatabaseTest
     {
         $repo = $this->entityManager->getRepository('App\Entity\ConversionRule');
         $rules = $repo->getRulesForIngredient($this->tomato);
-        $this->assertCount(1, $rules);
+        $this->assertCount(2, $rules);
     }
 
     public function testRetrieveInUnit()
@@ -42,6 +46,8 @@ class ConversionTableTest extends DatabaseTest
         // Check conversion when rule is on the "to" side
         $this->assertEquals($repo->getQtyInUnit($qty, $this->un)->getAmount(), 2.5);
         $this->assertEquals($repo->getQtyInUnit($qty, $this->un)->getUnit(), $this->un);
+        $this->assertEquals($repo->getQtyInUnit($qty, $this->cup)->getAmount(), 3.125);
+        $this->assertEquals($repo->getQtyInUnit($qty, $this->cup)->getUnit(), $this->cup);
         $this->assertEquals($repo->getQtyInUnit($qtyFrom, $this->kg)->getAmount(), 0.4);
         $this->assertEquals($repo->getQtyInUnit($qtyFrom, $this->kg)->getUnit(), $this->kg);
         // Unit unchanged means qty unchanged

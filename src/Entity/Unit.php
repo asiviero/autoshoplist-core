@@ -31,5 +31,13 @@ class Unit
     {
         $this->name = $name;
         $this->symbol = $symbol;
+    }    
+
+    /**
+     * Get the value of symbol
+     */ 
+    public function getSymbol()
+    {
+        return $this->symbol;
     }
 }
