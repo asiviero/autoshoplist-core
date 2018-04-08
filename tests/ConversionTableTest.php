@@ -50,4 +50,20 @@ class ConversionTableTest extends DatabaseTest
         $this->assertEquals($repo->getQtyInUnit($qtyFrom, $this->un)->getAmount(), 1);
         $this->assertEquals($repo->getQtyInUnit($qtyFrom, $this->un)->getUnit(), $this->un);
     }
+
+    public function testSum()
+    {
+        $repo = $this->entityManager->getRepository('App\Entity\Quantity');
+        $qty = new Quantity(1, $this->kg, $this->tomato);
+        $qtyFrom = new Quantity(1, $this->un, $this->tomato);
+        
+        $this->assertEquals($repo->sum($qty, $qtyFrom)->getAmount(), 1.4);
+        $this->assertEquals($repo->sum($qty, $qtyFrom)->getUnit(), $qty->getUnit());
+        $this->assertEquals($repo->sum($qty, $qty)->getAmount(), 2);
+        $this->assertEquals($repo->sum($qty, $qty)->getUnit(), $qty->getUnit());
+        $this->assertEquals($repo->sum($qtyFrom, $qty)->getAmount(), 3.5);        
+        $this->assertEquals($repo->sum($qtyFrom, $qty)->getUnit(), $qtyFrom->getUnit());
+        $this->assertEquals($repo->sum($qtyFrom, $qtyFrom)->getAmount(), 2);
+        $this->assertEquals($repo->sum($qtyFrom, $qtyFrom)->getUnit(), $qtyFrom->getUnit());
+    }
 }

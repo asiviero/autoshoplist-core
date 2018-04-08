@@ -36,4 +36,10 @@ class QuantityRepository extends EntityRepository
         $amount = $factor * $qty->getAmount();
         return new Quantity($amount, $unit, $qty->getIngredient());
     }
+
+    public function sum(Quantity $a, Quantity $b)
+    {
+        $b = $this->getQtyInUnit($b, $a->getUnit());
+        return new Quantity($a->getAmount() + $b->getAmount(), $a->getUnit(), $a->getIngredient());
+    }
 }
