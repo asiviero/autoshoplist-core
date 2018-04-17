@@ -36,6 +36,12 @@ class Quantity
      */
     public $amount;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Recipe", inversedBy="quantities")
+     * @ORM\JoinColumn(name="recipe_id", referencedColumnName="id")
+     */
+    public $recipe;
+
     public function __construct($amount, Unit $unit, Ingredient $ingredient) {
         $this->amount = $amount;
         $this->unit = $unit;

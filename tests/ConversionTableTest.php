@@ -15,27 +15,41 @@ class ConversionTableTest extends DatabaseTest
         $this->un = new Unit('unit', 'un');
         $this->cup = new Unit('cup', 'cup');
         $this->kg = new Unit('kilogram', 'kg');
+        $this->g = new Unit('gram', 'g');
+        
         $this->tomato = new Ingredient('tomato', $this->un);
         $this->potato = new Ingredient('potato', $this->un);
+
+        $conversionGlobal = new ConversionRule(null, $this->kg, 1000, $this->g);
         $conversionTomato = new ConversionRule($this->tomato, $this->un, 0.4, $this->kg);
         $conversionTomato2 = new ConversionRule($this->tomato, $this->cup, 0.8, $this->un);
         $conversionPotato = new ConversionRule($this->potato, $this->un, 0.6, $this->kg);
         $this->entityManager->persist($this->un);
         $this->entityManager->persist($this->cup);
         $this->entityManager->persist($this->kg);        
+        $this->entityManager->persist($this->g);        
         $this->entityManager->persist($this->tomato);
         $this->entityManager->persist($this->potato);
         $this->entityManager->persist($conversionTomato);
         $this->entityManager->persist($conversionTomato2);
         $this->entityManager->persist($conversionPotato);
+        $this->entityManager->persist($conversionGlobal);
         $this->entityManager->flush();
+    }
+
+    public function testGlobalConversionRules()
+    {
+        $repo = $this->entityManager->getRepository('App\Entity\Quantity');
+        $qty = new Quantity(1, $this->kg, $this->tomato);
+        $this->assertEquals($repo->getQtyInUnit($qty, $this->g)->getAmount(), 1000);
+        $this->assertEquals($repo->getQtyInUnit($qty, $this->g)->getUnit(), $this->g);        
     }
 
     public function testRetrieveConversionTableByIngredient()
     {
         $repo = $this->entityManager->getRepository('App\Entity\ConversionRule');
         $rules = $repo->getRulesForIngredient($this->tomato);
-        $this->assertCount(2, $rules);
+        $this->assertCount(3, $rules);
     }
 
     public function testRetrieveInUnit()

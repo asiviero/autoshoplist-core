@@ -29,9 +29,37 @@ class Ingredient
      */     
     public $baseUnit;
 
-    public function __construct($name, $baseUnit) {
+    /**
+     * @ORM\OneToOne(targetEntity="Recipe", inversedBy="ingredient")
+     * @ORM\JoinColumn(name="recipe_id", referencedColumnName="id")
+     */
+    public $recipe;
+
+    public function __construct($name, $baseUnit, $recipe = null) {
         $this->name = $name;
         $this->baseUnit = $baseUnit;
+        $this->recipe = $recipe;
     }
 
+    public function isRecipe()
+    {
+        return $this->recipe != null;
+    }
+
+
+    /**
+     * Get the value of recipe
+     */ 
+    public function getRecipe()
+    {
+        return $this->recipe;
+    }
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
 }

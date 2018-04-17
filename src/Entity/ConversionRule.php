@@ -43,7 +43,7 @@ class ConversionRule
      */
     public $factor;
 
-    public function __construct(Ingredient $ingredient, Unit $from, $factor, Unit $to)
+    public function __construct(Ingredient $ingredient = null, Unit $from, $factor, Unit $to)
     {
         $this->ingredient = $ingredient;
         $this->from = $from;

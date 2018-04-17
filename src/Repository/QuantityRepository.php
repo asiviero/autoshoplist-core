@@ -32,4 +32,35 @@ class QuantityRepository extends EntityRepository
         $b = $this->getQtyInUnit($b, $a->getUnit());
         return new Quantity($a->getAmount() + $b->getAmount(), $a->getUnit(), $a->getIngredient());
     }
+
+    public function getFlattenedQuantity(Quantity $qty)
+    {
+        $ingredient = $qty->getIngredient();
+        if($ingredient->isRecipe()) {
+            $list = $ingredient->getRecipe()->getQuantities();
+            $qtyList = [];
+            foreach($list as $sqty) {
+                $qtyList[] = $this->getFlattenedQuantity($sqty);
+            }
+            return $qtyList;            
+        } else {
+            return $qty;
+        }                                
+    }
+
+    public function groupQuantitiesByIngredient($qtyList)
+    {
+        $return = [];
+        array_walk($qtyList, function($item) use(&$return) {
+            if(isset($return[$item->getIngredient()->getId()])) {
+                $return[$item->getIngredient()->getId()] = $this->sum(
+                    $return[$item->getIngredient()->getId()],
+                    $item
+                );
+            } else {
+                $return[$item->getIngredient()->getId()] = $item;
+            }
+        });
+        return $return;
+    }
 }
