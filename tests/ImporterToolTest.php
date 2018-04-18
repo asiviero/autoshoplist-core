@@ -40,6 +40,25 @@ class ImporterToolTest extends DatabaseTest
 
     }
 
+    public function testUpdateDatabase()
+    {
+        $tool = new RecipeDatabaseImporterTool($this->entityManager);
+        $tool->import(__DIR__.'/addtestbase.yml');
+
+        // unit check
+        $unitRepo = $this->entityManager->getRepository('App\Entity\Unit');
+        $this->assertCount(8, $unitRepo->findAll());
+
+        // conversion rules check
+        $conversionRepo = $this->entityManager->getRepository('App\Entity\ConversionRule');
+        $this->assertCount(6, $conversionRepo->findAll());    
+
+        // ingredient check
+        $ingredientRepo = $this->entityManager->getRepository('App\Entity\Ingredient');
+        $this->assertCount(9, $ingredientRepo->findAll());
+
+    }
+
     public function testFlattenComposite()
     {
         $recipeRepo = $this->entityManager->getRepository('App\Entity\Recipe');

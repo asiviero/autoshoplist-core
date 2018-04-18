@@ -1,0 +1,23 @@
+units:
+  - kilogram (kg)
+  - piece (pc)
+ingredients:
+  - tomato
+  - flour
+  - potato
+conversion rules:
+  - 1 un = 0.3 kg (tomato)
+  - 1 cup = 0.8 l
+  - 1 l = 1000 ml
+  - 1 qty = 3 pc (pasta dough)
+recipes:
+  tomato sauce:
+    ingredient list:
+      - 6 un tomato
+      - 0.03 kg salt
+      - 0.03 l olive oil
+    is ingredient:
+      makes 300 ml
+  mashed potatoes:
+    ingredient list:
+      - 4 un potato

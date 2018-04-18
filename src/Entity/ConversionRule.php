@@ -74,4 +74,16 @@ class ConversionRule
     {
         return $this->to;
     }
+
+    /**
+     * Set the value of factor
+     *
+     * @return  self
+     */ 
+    public function setFactor($factor)
+    {
+        $this->factor = $factor;
+
+        return $this;
+    }
 }

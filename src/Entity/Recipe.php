@@ -90,4 +90,12 @@ class Recipe
     {
         return $this->makes;
     }
+
+    public function replaceQuantities($qtyList)
+    {
+        foreach($this->quantities as $key => $qty) {
+            $this->quantities->removeElement($qty);
+        }
+        $this->quantities = new ArrayCollection($qtyList);
+    }
 }
