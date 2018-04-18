@@ -62,4 +62,12 @@ class Ingredient
     {
         return $this->id;
     }
+
+    /**
+     * Get the value of name
+     */ 
+    public function getName()
+    {
+        return $this->name;
+    }
 }

@@ -1,0 +1,40 @@
+units:
+  - kilogram (kg)
+  - gram (g)
+  - unit (un)
+  - liter (l)
+  - mililiter (ml)
+  - cup (cup)
+  - quantity (qty)
+ingredients:
+  - tomato
+  - salt
+  - olive oil
+  - garlic
+  - egg
+  - flour
+conversion rules:
+  - 1 un = 0.4 kg (tomato)
+  - 1 cup = 0.3 l
+  - 1 kg = 1000 g
+  - 1 l = 1000 ml
+  - 1 cup = 0.2 kg (flour)
+recipes:
+  tomato sauce:
+    ingredient list:
+      - 4 un tomato
+      - 0.03 kg salt
+      - 0.03 l olive oil
+    is ingredient:
+      makes 300 ml
+  pasta dough:
+    ingredient list:
+      - 2 cup flour
+      - 3 un egg
+      - 0.04 kg salt
+    is ingredient:
+      makes 1 qty
+  fettucine al pomodoro:
+    ingredient list:
+      - 1 qty pasta dough
+      - 500 ml tomato sauce

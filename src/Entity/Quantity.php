@@ -62,4 +62,16 @@ class Quantity
     {
         return $this->ingredient;
     }
+
+    /**
+     * Set the value of amount
+     *
+     * @return  self
+     */ 
+    public function setAmount($amount)
+    {
+        $this->amount = $amount;
+
+        return $this;
+    }
 }

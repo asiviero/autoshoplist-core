@@ -14,8 +14,7 @@ class UnitFetchTest extends DatabaseTest
     {
         parent::setUp();
         $this->un = new Unit('unit', 'un');
-        $this->kg = new Unit('kilogram', 'kg');
-        
+        $this->kg = new Unit('kilogram', 'kg');        
         $this->tomato = new Ingredient('tomato', $this->un);
         $this->mustard = new Ingredient('mustard', $this->un);
         $this->salt = new Ingredient('salt', $this->kg);
@@ -23,7 +22,7 @@ class UnitFetchTest extends DatabaseTest
         $this->recipe = new Recipe('tomato sauce', [
             $this->qty,
             new Quantity(0.4, $this->kg, $this->salt)        
-        ], true, $this->kg);
+        ], true, $this->kg, 1);
 
         $this->recipeComposite = new Recipe('mustard with sauce', [
             new Quantity(1, $this->kg, $this->recipe->getIngredient()),
@@ -72,5 +71,7 @@ class UnitFetchTest extends DatabaseTest
         $this->assertEquals($groupped[$this->tomato->getId()]->getAmount(), 1);
         $this->assertEquals($groupped[$this->salt->getId()]->getAmount(), 0.8);
     }
+
+    
 }
 
