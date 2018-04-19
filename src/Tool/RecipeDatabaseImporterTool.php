@@ -148,7 +148,13 @@ class RecipeDatabaseImporterTool
             }, $recipe['ingredient list']);
             $re = $this->recipeRepo->findOneByName($name);
             if($re) {
+                $oldQty = $re->getQuantities();
+                $em = $this->em;
+                $oldQty->map(function($item) use($em) {
+                    $em->remove($item);
+                });
                 $re->replaceQuantities($ingredientList);
+                $this->recipes[] = $re;
             } else {
                 $isIngredient = false;
                 $unit = null;

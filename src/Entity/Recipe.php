@@ -45,6 +45,9 @@ class Recipe
     {
         $this->name = $name;
         $this->quantities = new ArrayCollection($quantities);
+        foreach($this->quantities as $qty) {
+            $qty->setRecipe($this);
+        }
         if($isIngredient) {
             $ingredient = new Ingredient($name, $ingredientUnit, $this);
             $this->ingredient = $ingredient;
@@ -97,5 +100,16 @@ class Recipe
             $this->quantities->removeElement($qty);
         }
         $this->quantities = new ArrayCollection($qtyList);
+        foreach($this->quantities as $qty) {
+            $qty->setRecipe($this);
+        }
+    }
+
+    /**
+     * Get the value of name
+     */ 
+    public function getName()
+    {
+        return $this->name;
     }
 }

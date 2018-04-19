@@ -10,7 +10,7 @@ class RecipeRepository extends EntityRepository
     public function getFlattenedQuantities(Recipe $recipe)
     {
         $qtyRepo = $this->_em->getRepository('App\Entity\Quantity');
-        $list = $recipe->quantities->map(function($qty) use($qtyRepo) {
+        $list = $recipe->getQuantities()->map(function($qty) use($qtyRepo) {
             $flattened = $qtyRepo->getFlattenedQuantity($qty);
             $return = [];
             if($qty->getIngredient()->isRecipe()) {

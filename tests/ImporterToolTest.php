@@ -74,6 +74,5 @@ class ImporterToolTest extends DatabaseTest
                 $this->assertEquals($sauceQty->getAmount() * $factor, $qty->getAmount());
             }
         }
-        $b=1;
     }
 }

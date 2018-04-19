@@ -32,7 +32,7 @@ class Quantity
     public $unit;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="float")
      */
     public $amount;
 
@@ -73,5 +73,26 @@ class Quantity
         $this->amount = $amount;
 
         return $this;
+    }
+
+    /**
+     * Set the value of recipe
+     *
+     * @return  self
+     */ 
+    public function setRecipe($recipe)
+    {
+        $this->recipe = $recipe;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return sprintf('%s %s %s',
+            number_format($this->amount, 2),
+            $this->unit->getSymbol(),
+            $this->ingredient->getName()
+        );
     }
 }

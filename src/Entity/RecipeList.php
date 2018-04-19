@@ -19,7 +19,6 @@ class RecipeList
     public $id;
 
     /**
-     * Many Users have Many Groups.
      * @ORM\ManyToMany(targetEntity="Recipe", cascade={"persist"})
      * @ORM\JoinTable(name="recipe_list_recipe",
      *      joinColumns={@ORM\JoinColumn(name="recipe_list_id", referencedColumnName="id")},
