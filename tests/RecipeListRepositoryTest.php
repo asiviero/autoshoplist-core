@@ -8,7 +8,7 @@ use App\Entity\Quantity;
 use App\Entity\Ingredient;
 use App\Entity\RecipeList;
 
-class UnitFetchTest extends DatabaseTest
+class RecipeListRepositoryTest extends DatabaseTest
 {
     public function setUp()
     {
@@ -41,23 +41,25 @@ class UnitFetchTest extends DatabaseTest
         $this->entityManager->flush();
     }
 
-    public function testFetchUnits()
-    {
-        $recipeRepo = $this->entityManager->getRepository('App\Entity\Recipe');
-        $ingredientRepo = $this->entityManager->getRepository('App\Entity\Ingredient');
-        $ing = $ingredientRepo->findAll();
-        $recipe = $recipeRepo->findOneBy(['name' => 'mustard with sauce']);
-        $flattened = $recipeRepo->getFlattenedQuantities($recipe);
-        $this->assertCount(3, $flattened);
-    }
-
     public function testGrouppedRecipeList()
     {
-        $recipeList = new RecipeList([$this->recipe, $this->recipe]);
+        $recipeList = new RecipeList([
+            $this->recipe, 
+            $this->recipeComposite,
+            $this->recipeComposite
+        ]);
         $recipeListRepo = $this->entityManager->getRepository('App\Entity\RecipeList');
+        
+        // recipe list:
+        // 1 tomato sauce + 2 mustard with sauce = 
+        // 1 tomato sauce + 2x(1 tomato sauce + 3 mustard) =
+        // 3 tomato sauce + 6 mustard =
+        // 3x(0.5 tomato + 0.4 salt) + 6 mustard =
+        // 1.5 tomato + 1.2 salt + 6 mustard
         $groupped = $recipeListRepo->getFlattenedQuantities($recipeList);
-        $this->assertEquals($groupped[$this->tomato->getId()]->getAmount(), 1);
-        $this->assertEquals($groupped[$this->salt->getId()]->getAmount(), 0.8);
+        $this->assertEquals($groupped[$this->tomato->getName()]->getAmount(), 1.5);
+        $this->assertEquals($groupped[$this->salt->getName()]->getAmount(), 1.2);
+        $this->assertEquals($groupped[$this->mustard->getName()]->getAmount(), 6);
     }
 
     

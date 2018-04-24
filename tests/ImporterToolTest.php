@@ -71,7 +71,11 @@ class ImporterToolTest extends DatabaseTest
             $sauceQty = $sauce->getQuantityOf($qty->getIngredient()->getName());
             $doughQty = $dough->getQuantityOf($qty->getIngredient()->getName());
             if($sauceQty) {
-                $this->assertEquals($sauceQty->getAmount() * $factor, $qty->getAmount());
+                $amount = $sauceQty->getAmount() * $factor;
+                if($doughQty) {
+                    $amount += $doughQty->getAmount();
+                }
+                $this->assertEquals($amount, $qty->getAmount());
             }
         }
     }

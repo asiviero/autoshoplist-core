@@ -9,7 +9,7 @@ use App\Entity\Ingredient;
 use App\Entity\ConversionRule;
 use App\Exception\ConversionImpossibleException;
 
-class ConversionTableTest extends DatabaseTest
+class QuantityRepositoryTest extends DatabaseTest
 {
     public function setUp()
     {
