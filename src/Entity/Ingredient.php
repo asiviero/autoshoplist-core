@@ -35,7 +35,7 @@ class Ingredient
      */
     public $recipe;
 
-    public function __construct($name, $baseUnit, $recipe = null) {
+    public function __construct($name, $baseUnit = null, $recipe = null) {
         $this->name = $name;
         $this->baseUnit = $baseUnit;
         $this->recipe = $recipe;

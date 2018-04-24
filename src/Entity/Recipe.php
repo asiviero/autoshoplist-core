@@ -41,7 +41,7 @@ class Recipe
      */
     public $makes;
 
-    public function __construct($name, $quantities = null, $isIngredient = false, Unit $ingredientUnit = null, $makeFactor = null)
+    public function __construct($name, $quantities = null, $isIngredient = false, Unit $ingredientUnit = null, $makeFactor = 1)
     {
         $this->name = $name;
         $this->quantities = new ArrayCollection($quantities);
@@ -82,8 +82,8 @@ class Recipe
             if($qty->getIngredient()->getName() == $ingredientName) {
                 return $qty;
             }
-            return null;
         }
+        return null;
     }
 
     /**

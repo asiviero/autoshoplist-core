@@ -39,7 +39,7 @@ class ConversionRule
     public $to;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="float")
      */
     public $factor;
 

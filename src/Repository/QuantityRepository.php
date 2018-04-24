@@ -42,7 +42,18 @@ class QuantityRepository extends EntityRepository
             foreach($list as $sqty) {
                 $qtyList[] = $this->getFlattenedQuantity($sqty);
             }
-            return $qtyList;            
+            $qtyInIngrUnit = $this->getQtyInUnit(
+                $qty, 
+                $qty->getIngredient()->getRecipe()->getMakes()->getUnit()
+            );
+            $factor = $qtyInIngrUnit->getAmount() / $qty->getIngredient()->getRecipe()->getMakes()->getAmount();
+            $return = [];
+            array_walk_recursive($qtyList, function($item) use(&$return, $factor) {
+                $item = clone $item;
+                $item->setAmount($item->getAmount() * $factor);
+                $return[] = $item;
+            });
+            return $return;            
         } else {
             return $qty;
         }                                
