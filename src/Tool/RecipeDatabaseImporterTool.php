@@ -85,10 +85,10 @@ class RecipeDatabaseImporterTool
             $cr = $this->conversionRepo->findOneBy($filters);
             if(!$cr) {
                 $cr = new ConversionRule(
-                    is_null($ingredient) ? null : $this->getIngredient($ingredient),
                     $this->getUnit($from),
                     $factor,
-                    $this->getUnit($to)
+                    $this->getUnit($to),
+                    is_null($ingredient) ? null : $this->getIngredient($ingredient)
                 );
             } else {
                 $cr->setFactor($factor);

@@ -6,6 +6,7 @@ use Dijkstra\Graph;
 use App\Entity\Unit;
 use App\Entity\Quantity;
 use Doctrine\ORM\EntityRepository;
+use App\Exception\ConversionImpossibleException;
 
 class QuantityRepository extends EntityRepository
 {
@@ -24,6 +25,13 @@ class QuantityRepository extends EntityRepository
             $graph->addedge($rule->to->getSymbol(), $rule->from->getSymbol(), 1/$rule->getFactor());
         }
         list($path, $weight) = $graph->getpath($qty->getUnit()->getSymbol(), $unit->getSymbol());
+        if(empty($path)) {
+            throw new ConversionImpossibleException(
+                $qty->getUnit(),
+                $unit,
+                $qty->getIngredient()
+            );
+        }
         return new Quantity(array_product($weight), $unit, $qty->getIngredient());
     }
 
@@ -63,13 +71,13 @@ class QuantityRepository extends EntityRepository
     {
         $return = [];
         array_walk($qtyList, function($item) use(&$return) {
-            if(isset($return[$item->getIngredient()->getId()])) {
-                $return[$item->getIngredient()->getId()] = $this->sum(
-                    $return[$item->getIngredient()->getId()],
+            if(isset($return[$item->getIngredient()->getName()])) {
+                $return[$item->getIngredient()->getName()] = $this->sum(
+                    $return[$item->getIngredient()->getName()],
                     $item
                 );
             } else {
-                $return[$item->getIngredient()->getId()] = $item;
+                $return[$item->getIngredient()->getName()] = $item;
             }
         });
         return $return;

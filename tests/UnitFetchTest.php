@@ -43,24 +43,12 @@ class UnitFetchTest extends DatabaseTest
 
     public function testFetchUnits()
     {
-        $a=1;
         $recipeRepo = $this->entityManager->getRepository('App\Entity\Recipe');
         $ingredientRepo = $this->entityManager->getRepository('App\Entity\Ingredient');
         $ing = $ingredientRepo->findAll();
         $recipe = $recipeRepo->findOneBy(['name' => 'mustard with sauce']);
         $flattened = $recipeRepo->getFlattenedQuantities($recipe);
         $this->assertCount(3, $flattened);
-    }
-
-    public function testGroupByIngredient()
-    {
-        $qty = new Quantity(0.8, $this->un, $this->tomato);
-        $qty2 = new Quantity(0.6, $this->un, $this->tomato);
-        $qty3 = new Quantity(0.5, $this->kg, $this->salt);
-        $qtyRepo = $this->entityManager->getRepository('App\Entity\Quantity');
-        $groupped = $qtyRepo->groupQuantitiesByIngredient([$qty, $qty2, $qty3]);
-        $this->assertCount(2, $groupped);
-        $this->assertEquals($groupped[$this->tomato->getId()]->getAmount(), 1.4);
     }
 
     public function testGrouppedRecipeList()

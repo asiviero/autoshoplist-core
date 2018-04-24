@@ -40,4 +40,9 @@ class Unit
     {
         return $this->symbol;
     }
+
+    public function __toString()
+    {
+        return sprintf('%s (%s)', $this->name, $this->symbol);
+    }
 }
