@@ -19,15 +19,14 @@ class RecipeList
     public $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Recipe", cascade={"persist"})
-     * @ORM\JoinTable(name="recipe_list_recipe",
-     *      joinColumns={@ORM\JoinColumn(name="recipe_list_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="recipe_id", referencedColumnName="id")}
-     *      )
+     * @ORM\OneToMany(targetEntity="RecipeListRecipe", mappedBy="recipeList", cascade={"persist"})
      */
     public $recipes;
 
     public function __construct(array $recipes) {
+        $recipes = array_map(function($recipe) {
+            return new RecipeListRecipe($recipe, $this);
+        }, $recipes);
         $this->recipes = new ArrayCollection($recipes);
     }
 
@@ -37,6 +36,16 @@ class RecipeList
      */ 
     public function getRecipes()
     {
-        return $this->recipes;
+        return $this->recipes->map(function($item) {
+            return $item->getRecipe();
+        });        
+    }
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
     }
 }

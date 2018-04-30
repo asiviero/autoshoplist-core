@@ -38,6 +38,7 @@ class RecipeListCommand extends ContainerAwareCommand
         
         $rlistRepo = $entityManager->getRepository('App\Entity\RecipeList');
         $qtys = $rlistRepo->getFlattenedQuantities($rlist);
+        $output->writeln(sprintf("Generated Recipe List with Id: %s", $rlist->getId()));
         foreach($qtys as $qty) {
             $output->writeln($qty->__toString());
         }

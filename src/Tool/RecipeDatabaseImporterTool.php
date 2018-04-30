@@ -33,8 +33,8 @@ class RecipeDatabaseImporterTool
     public function import($filename)
     {
         $yaml = Yaml::parse(file_get_contents($filename));
-        $this->importIngredients($yaml['ingredients']);
         $this->importUnits($yaml['units']);
+        $this->importIngredients($yaml['ingredients']);
         $this->importConversionRules($yaml['conversion rules']);
         $this->importRecipes($yaml['recipes']);
         
