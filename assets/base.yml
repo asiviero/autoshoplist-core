@@ -1,0 +1,157 @@
+units:
+  - kilogram (kg)
+  - gram (g)
+  - unit (un)
+  - liter (l)
+  - mililiter (ml)
+  - cup (cup)
+  - quantity (qty)
+  - tablespoon (tbsp)
+  - teaspoon (tsp)
+  - packet (pct)
+  - can (can)
+ingredients:
+  - tomato
+  - salt
+  - olive oil
+  - garlic
+  - egg
+  - flour
+  - corn flour
+  - sugar
+  - milk
+  - vegetal oil
+  - butter
+  - baking powder
+  - vanilla essence
+  - yeast
+  - leek
+  - potato
+  - parsley
+  - carrot
+  - onion
+  - celery
+  - basil
+  - zucchini
+  - cooking cream
+  - semolina
+  - nutmeg
+  - black pepper
+  - pecorino romano
+  - parmesan
+  - corn starch
+  - cooked ham
+  - sage leaf
+  - pork ribs
+  - thyme
+  - red pepper
+  - peeled tomato
+  - paprica
+  - red wine
+  - bay leaf
+conversion rules:
+  - 1 un = 0.4 kg (tomato)
+  - 1 un = 200 g (potato)
+  - 1 cup = 0.3 l
+  - 1 kg = 1000 g
+  - 1 l = 1000 ml
+  - 1 cup = 0.2 kg (flour)
+  - 1 un = 2 tbsp (parsley)
+  - 1 tbsp = 5 g (parmesan)
+recipes:
+  tomato sauce:
+    ingredient list:
+      - 4 un tomato
+      - 0.03 kg salt
+      - 0.03 l olive oil
+    is ingredient:
+      makes 300 ml
+  pasta dough:
+    ingredient list:
+      - 2 cup flour
+      - 3 un egg
+      - 0.04 kg salt
+    is ingredient:
+      makes 1 qty
+  fettucine al pomodoro:
+    ingredient list:
+      - 1 qty pasta dough
+      - 600 ml tomato sauce
+  torta de mais:
+    ingredient list:
+      - 300 g corn flour
+      - 400 g sugar
+      - 500 ml milk
+      - 100 ml vegetal oil
+      - 1 tbsp butter
+      - 4 un egg
+      - 1 tbsp baking powder
+      - 1 tsp vanilla essence
+  pizza dough:
+    ingredient list:
+      - 2 cup flour
+      - 0.04 kg salt
+      - 1 pct yeast
+    is ingredient:
+      makes 1 qty
+  vegetable stock:
+    ingredient list:
+      - 1 un carrot
+      - 1 un onion
+      - 1 un celery
+      - 1 un parsley
+      - 2 un basil
+      - 1 un potato
+      - 1 un zucchini
+      - 1 un garlic
+    is ingredient:
+      makes 1.2 l
+  parmentier:
+    ingredient list:
+      - 1 un leek
+      - 1 tbsp olive oil
+      - 1 tbsp butter
+      - 300 g potato
+      - 1 tbsp parsley
+      - 0.78 l vegetable stock
+      - 1 tbsp cooking cream
+  sauce for gnocchi alla romana:
+    ingredient list:
+      - 0.5 l vegetable stock
+      - 1 tbsp corn starch
+      - 300 ml cooking cream
+      - 60 g parmesan
+    is ingredient:
+      makes 1 qty
+  gnocchi alla romana:
+    ingredient list:
+      - 1 l milk
+      - 70 g butter
+      - 210 g semolina
+      - 28 g pecorino romano
+      - 60 g parmesan
+      - 1 un egg
+      - 1 qty sauce for gnocchi alla romana
+  ham and sage frittata:
+    ingredient list:
+      - 6 un egg
+      - 0.5 cup cooked ham
+      - 6 un sage leaf
+      - 1 tbsp parmesan
+      - 2 tbsp cooking cream
+      - 2 tbsp butter      
+  ribs ragu:
+    ingredient list:
+      - 1 un onion
+      - 1 un garlic
+      - 1 kg pork ribs
+      - 4 tbsp olive oil
+      - 1 tbsp paprica
+      - 1 tbsp red pepper
+      - 1 can peeled tomato
+      - 1 cup red wine
+      - 1 un bay leaf
+      - 1 tbsp thyme
+  # sausage pizza:
+
+
