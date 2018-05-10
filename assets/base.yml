@@ -10,6 +10,7 @@ units:
   - teaspoon (tsp)
   - packet (pct)
   - can (can)
+  - pound (lb)
 ingredients:
   - tomato
   - salt
@@ -49,15 +50,36 @@ ingredients:
   - paprica
   - red wine
   - bay leaf
+  - cauliflower
+  - lemon
+  - white wine
+  - italian sausage
+  - brussels sprouts
+  - almonds
+  - bread crumbs
+  - green beans
+  - scallions
+  - sesame seeds
+  - dijon mustard
+  - white wine vinegar
+  - eye of round beef
+  - pancetta
+  - pepper
+  - tomato paste
+  - dried mushroom
+  - ground meat
+  - brocoli
 conversion rules:
   - 1 un = 0.4 kg (tomato)
   - 1 un = 200 g (potato)
   - 1 cup = 0.3 l
+  - 1 cup = 16 tbsp
   - 1 kg = 1000 g
   - 1 l = 1000 ml
   - 1 cup = 0.2 kg (flour)
   - 1 un = 2 tbsp (parsley)
   - 1 tbsp = 5 g (parmesan)
+  - 1 un = 50 g (carrot)
 recipes:
   tomato sauce:
     ingredient list:
@@ -152,6 +174,87 @@ recipes:
       - 1 cup red wine
       - 1 un bay leaf
       - 1 tbsp thyme
-  # sausage pizza:
-
-
+  spiced cauliflower:
+    ingredient list:
+      - 1 un cauliflower
+      - 2 un carrot
+      - 1 un garlic
+      - 1 un lemon
+      - 1 tbsp white wine
+      - 3 tbsp olive oil
+      - 0.03 kg paprica
+      - 0.03 kg salt
+  sausages with carrots:
+    ingredient list:
+      - 3 tbsp butter
+      - 8 un carrot
+      - 500 g italian sausage
+      - 0.03 kg salt
+      - 0.03 kg black pepper
+  brussels sprouts with almonds:
+    ingredient list:
+      - 1.5 lb brussels sprouts
+      - 0.25 cup butter
+      - 0.25 cup almonds
+      - 1 un garlic
+      - 1 un lemon
+      - 1.5 tsp bread crumbs
+      - 0.03 kg salt
+      - 0.03 kg pepper
+  frosted green beans with sesame:
+    ingredient list:
+      - 4.25 cup green beans
+      - 2 tbsp butter
+      - 2 un scallions
+      - 0.5 un lemon
+      - 1 tbsp sesame seeds
+      - 0.05 ml olive oil
+      - 0.03 kg salt
+      - 0.03 kg pepper
+  carrots in french sauce:
+    ingredient list:
+      - 2 tbsp olive oil
+      - 600 g carrot
+      - 1 un egg
+      - 1 tbsp dijon mustard
+      - 1 tbsp white wine vinegar
+      - 0.03 kg salt
+  braised brocoli:
+    ingredient list:
+      - 2 tbsp olive oil
+      - 2 un garlic
+      - 900 g brocoli
+      - 0.03 kg salt
+      - 0.03 kg pepper
+  florentine beef stew:
+    ingredient list:
+      - 3 un carrot
+      - 900 g eye of round beef
+      - 400 g pancetta
+      - 1 un celery
+      - 0.5 un onion
+      - 4 tbsp olive oil
+      - 0.75 cup red wine
+      - 4 un tomato
+      - 0.03 kg salt
+      - 0.03 kg pepper
+  tagliatelle with mushroom:
+    ingredient list:
+      - 1 qty pasta dough
+      - 0.5 cup dried mushroom
+      - 1 un onion
+      - 2 tbsp olive oil
+      - 5 tbsp white wine
+      - 3 tbsp tomato paste
+      - 0.5 cup parmesan
+      - 0.03 kg salt
+  meat frittata:
+    ingredient list:
+      - 0.25 cup butter
+      - 300 g ground meat
+      - 4 un egg
+      - 1 un parsley
+      - 2 tbsp milk
+      - 1 tbsp olive oil
+      - 0.03 kg salt
+      - 0.03 kg pepper
