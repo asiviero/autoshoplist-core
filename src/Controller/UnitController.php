@@ -4,13 +4,17 @@ namespace App\Controller;
 
 use App\Entity\Unit;
 use App\Form\UnitType;
+use Swagger\Annotations as SWG;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Swagger\Annotations as SWG;
-use Nelmio\ApiDocBundle\Annotation\Model;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 /**
  * @Route("/api/unit")
@@ -37,10 +41,9 @@ class UnitController extends Controller
      *     @Model(type=Unit::class)
      * )
      */
-    public function new(Request $request): Response
+    public function new(Request $request, SerializerInterface $serializer): Response
     {
-        // @todo implement        
-        $unit = new Unit($request->request->get('name'), $request->request->get('symbol'));
+        $unit = $serializer->deserialize($request->getContent(), Unit::class, 'json');
         $this->getDoctrine()->getEntityManager()->persist($unit);
         $this->getDoctrine()->getEntityManager()->flush();
         return new JsonResponse($unit);
@@ -63,15 +66,9 @@ class UnitController extends Controller
     /**
      * @Route("/{id}", name="unit_edit", methods="PATCH|PUT")
      */
-    public function edit(Request $request, Unit $unit): Response
+    public function edit(Request $request, Unit $unit, SerializerInterface $serializer): Response
     {
-        if($name = $request->request->get('name')) {
-            $unit->setName($name);
-        }
-        if($symbol = $request->request->get('symbol')) {
-            $unit->setSymbol($symbol);
-        }
-        $this->getDoctrine()->getEntityManager()->persist($unit);
+        $unit = $serializer->deserialize($request->getContent(), Unit::class, 'json', ['object_to_populate' => $unit]);
         $this->getDoctrine()->getEntityManager()->flush();
         return new JsonResponse($unit);
     }
