@@ -2,7 +2,11 @@
 
 namespace App\Entity;
 
+use Swagger\Annotations as SWG;
 use Doctrine\ORM\Mapping as ORM;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Symfony\Component\Serializer\Annotation\Groups;
+//* @SWG\Definition(properties={"id","ingredient","unit","amount"})
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\QuantityRepository")
@@ -21,13 +25,15 @@ class Quantity
      * @var Ingredient
      * @ORM\ManyToOne(targetEntity="Ingredient")
      * @ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")
+     * @SWG\Property(ref=@Model(type=Ingredient::class))
      */     
     public $ingredient;
 
     /**
      * @var Unit
-     * @ORM\ManyToOne(targetEntity="Unit")
+     * @ORM\ManyToOne(targetEntity="Unit", cascade="merge")
      * @ORM\JoinColumn(name="unit_id", referencedColumnName="id")
+     * @SWG\Property(ref=@Model(type=Unit::class)) 
      */     
     public $unit;
 
@@ -39,8 +45,9 @@ class Quantity
     /**
      * @ORM\ManyToOne(targetEntity="Recipe", inversedBy="quantities")
      * @ORM\JoinColumn(name="recipe_id", referencedColumnName="id")
+     * @SWG\Property(readOnly=true, ref=@Model(type=Recipe::class))
      */
-    public $recipe;
+    private $recipe;
 
     public function __construct($amount, Unit $unit, Ingredient $ingredient) {
         $this->amount = $amount;
@@ -53,10 +60,10 @@ class Quantity
         return $this->amount;
     }
 
-    public function getUnit()
+    /*public function getUnit()
     {
         return $this->unit;
-    }
+    }*/
 
     public function getIngredient()
     {

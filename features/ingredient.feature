@@ -62,7 +62,7 @@ Feature: Ingredient related tests
         And print last JSON response
         And the JSON nodes should contain:
         |id|    1|
-        | name                   | tomato              |
+        | naUnitme                   | tomato              |
         And the JSON node "baseUnit.symbol" should contain "kg"
 
     Scenario: Create Ingredient with base unit fails if invalid unit

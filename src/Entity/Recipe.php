@@ -3,14 +3,15 @@
 namespace App\Entity;
 
 use App\Entity\Ingredient;
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 use Swagger\Annotations as SWG;
+use Doctrine\ORM\Mapping as ORM;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RecipeRepository")
  * @ORM\Table(name="recipe")
- * @SWG\Definition()
+ * @SWG\Definition(definition="Recipe")
  */
 class Recipe
 {
@@ -37,7 +38,6 @@ class Recipe
      * @var Ingredient
      * @ORM\OneToOne(targetEntity="Ingredient", cascade={"persist"})
      * @ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")
-     * @SWG\Property(ref="#/definitions/Unit")
      */
     public $ingredient;
 

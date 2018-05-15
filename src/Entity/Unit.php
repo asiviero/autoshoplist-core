@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Swagger\Annotations as SWG;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity()
  * @ORM\Table(name="unit")
- * @SWG\Definition()
  */
 class Unit
 {
@@ -17,21 +17,21 @@ class Unit
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @SWG\Property()
+     * @Groups({"request", "full"})
      */
     public $id;
 
     /**
      * @var string
      * @ORM\Column(type="string")
-     * @SWG\Property()
+     * @Groups({"request", "full"})
      */
     public $name;
 
     /**
      * @var string
      * @ORM\Column(type="string")
-     * @SWG\Property()
+     * @Groups({"request", "full"})
      */
     public $symbol;
 

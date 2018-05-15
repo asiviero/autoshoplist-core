@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Unit;
-use App\Form\UnitType;
 use App\Entity\Ingredient;
 use Swagger\Annotations as SWG;
 use Nelmio\ApiDocBundle\Annotation\Model;
@@ -27,15 +25,20 @@ class IngredientController extends Controller
      */
     public function index(): Response
     {
-        $units = $this->getDoctrine()
+        $ingredients = $this->getDoctrine()
             ->getRepository(Ingredient::class)
             ->findAll();
 
-        return new JsonResponse($units);
+        return new JsonResponse($ingredients);
     }
 
     /**
      * @Route("/", name="ingredient_new", methods="POST")
+     * @SWG\Parameter(
+     *     name="ingredient",
+     *     in="body",
+     *     @Model(type=Ingredient::class, groups={"request"})
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Successful response",

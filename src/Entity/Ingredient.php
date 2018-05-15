@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Swagger\Annotations as SWG;
+use Doctrine\ORM\Mapping as ORM;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity()
  * @ORM\Table(name="ingredient")
+ * @SWG\Definition()
  */
 class Ingredient
 {
@@ -16,12 +19,15 @@ class Ingredient
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @SWG\Property()
+     * @Groups({"request"})
      */
     public $id;
 
     /**
+     * @var string
      * @ORM\Column(type="string")
      * @SWG\Property()
+     * @Groups({"request"})
      */
     public $name;
 
@@ -29,13 +35,15 @@ class Ingredient
      * @var Unit
      * @ORM\ManyToOne(targetEntity="Unit", cascade="merge")
      * @ORM\JoinColumn(name="base_unit_id", referencedColumnName="id")
-     * @SWG\Property(ref="#/definitions/Unit")
+     * @SWG\Property(ref=@Model(type=Unit::class))
+     * @Groups({"request"})
      */     
     public $baseUnit;
 
     /**
      * @ORM\OneToOne(targetEntity="Recipe", inversedBy="ingredient")
      * @ORM\JoinColumn(name="recipe_id", referencedColumnName="id")
+     * @SWG\Property(ref=@Model(type=Recipe::class), readOnly=true)
      */
     public $recipe;
 
