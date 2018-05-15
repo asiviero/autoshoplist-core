@@ -13,12 +13,6 @@ class DefaultController extends AbstractController
 {
   /**
    * @Route("/api/", methods={"GET"})
-   * 
-   * @SWG\Response(
-   *     response=200,
-   *     description="Successful response",
-   *     @Model(type=Unit::class)
-   * )
    */
   public function index()
   {

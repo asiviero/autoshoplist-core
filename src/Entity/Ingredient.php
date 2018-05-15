@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Swagger\Annotations as SWG;
 
 /**
  * @ORM\Entity()
@@ -14,11 +15,13 @@ class Ingredient
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @SWG\Property()
      */
     public $id;
 
     /**
      * @ORM\Column(type="string")
+     * @SWG\Property()
      */
     public $name;
 
@@ -26,6 +29,7 @@ class Ingredient
      * @var Unit
      * @ORM\ManyToOne(targetEntity="Unit", cascade="merge")
      * @ORM\JoinColumn(name="base_unit_id", referencedColumnName="id")
+     * @SWG\Property(ref="#/definitions/Unit")
      */     
     public $baseUnit;
 
