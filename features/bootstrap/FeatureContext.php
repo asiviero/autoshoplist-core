@@ -33,11 +33,6 @@ class FeatureContext implements Context
         $em = $appKernel->getContainer()->get('doctrine.orm.entity_manager');
         $schemaTool = new SchemaTool($em);
         $schemaTool->createSchema($em->getMetadataFactory()->getAllMetadata());
-        $ingredient = new Ingredient('tomato');
-        $em->persist($ingredient);
-        $em->flush();
-        $repo = $em->getRepository('App\Entity\Ingredient');
-        $all = $repo->findAll();
     }
 
     /**
@@ -52,6 +47,21 @@ class FeatureContext implements Context
             $em->persist($unit);
         }
         $em->flush($unit);
+    }
+
+    /**
+     * @Given there are Ingredient with:
+     */
+    public function thereAreIngredientWith(TableNode $table)
+    {
+        $appKernel = $this->getKernel();
+        $em = $appKernel->getContainer()->get('doctrine.orm.entity_manager');
+        foreach($table->getHash() as $hash) {
+            $unit = empty($hash['unit']) ? null : $em->getRepository('App\Entity\Unit')->findOneBy(['symbol' => $hash['unit']]);
+            $ingredient = new Ingredient($hash['name'], $unit);
+            $em->persist($ingredient);
+        }
+        $em->flush($ingredient);
     }
 
     /**

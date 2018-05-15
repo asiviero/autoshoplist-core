@@ -91,4 +91,14 @@ class Unit
 
         return $this;
     }
+
+    /**
+     * Get the value of id
+     *
+     * @return  int
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
 }

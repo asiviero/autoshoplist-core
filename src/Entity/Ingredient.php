@@ -24,7 +24,7 @@ class Ingredient
 
     /**
      * @var Unit
-     * @ORM\ManyToOne(targetEntity="Unit")
+     * @ORM\ManyToOne(targetEntity="Unit", cascade="merge")
      * @ORM\JoinColumn(name="base_unit_id", referencedColumnName="id")
      */     
     public $baseUnit;
@@ -35,7 +35,7 @@ class Ingredient
      */
     public $recipe;
 
-    public function __construct($name, $baseUnit = null, $recipe = null) {
+    public function __construct($name, Unit $baseUnit = null, $recipe = null) {
         $this->name = $name;
         $this->baseUnit = $baseUnit;
         $this->recipe = $recipe;
@@ -70,4 +70,25 @@ class Ingredient
     {
         return $this->name;
     }
+
+    /**
+     * Get the value of baseUnit
+     */ 
+    public function getBaseUnit()
+    {
+        return $this->baseUnit;
+    }
+
+    /**
+     * Set the value of baseUnit
+     *
+     * @return  self
+     */ 
+    public function setBaseUnit(Unit $baseUnit)
+    {
+        $this->baseUnit = $baseUnit;
+
+        return $this;
+    }
+
 }
