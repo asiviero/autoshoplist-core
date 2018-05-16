@@ -7,7 +7,7 @@ units:
   - cup (cup)
   - quantity (qty)
 ingredients:
-  - tomato
+  - tomato (kg)
   - salt
   - olive oil
   - garlic

@@ -23,6 +23,9 @@ class ImporterToolTest extends DatabaseTest
         // ingredient check
         $ingredientRepo = $this->entityManager->getRepository('App\Entity\Ingredient');
         $this->assertCount(8, $ingredientRepo->findAll());
+        $tomato = $this->entityManager->getRepository('App\Entity\Ingredient')->findOneByName('tomato');
+        // preferred unit check
+        $this->assertEquals($tomato->getBaseUnit()->getSymbol(), 'kg');
 
         // conversion rules check
         $conversionRepo = $this->entityManager->getRepository('App\Entity\ConversionRule');
@@ -48,15 +51,17 @@ class ImporterToolTest extends DatabaseTest
         // unit check
         $unitRepo = $this->entityManager->getRepository('App\Entity\Unit');
         $this->assertCount(8, $unitRepo->findAll());
-
+        
         // conversion rules check
         $conversionRepo = $this->entityManager->getRepository('App\Entity\ConversionRule');
-        $this->assertCount(6, $conversionRepo->findAll());    
+        $this->assertCount(6, $conversionRepo->findAll());            
 
         // ingredient check
         $ingredientRepo = $this->entityManager->getRepository('App\Entity\Ingredient');
         $this->assertCount(9, $ingredientRepo->findAll());
-
+        // preferred unit check
+        $flour = $this->entityManager->getRepository('App\Entity\Ingredient')->findOneByName('flour');
+        $this->assertEquals($flour->getBaseUnit()->getSymbol(), 'kg');
     }
 
     public function testFlattenComposite()

@@ -96,7 +96,7 @@ class Ingredient
      *
      * @return  self
      */ 
-    public function setBaseUnit(Unit $baseUnit)
+    public function setBaseUnit(Unit $baseUnit = null)
     {
         $this->baseUnit = $baseUnit;
 

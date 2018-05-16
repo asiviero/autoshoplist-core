@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\RecipeList;
 use Doctrine\ORM\EntityRepository;
+use App\Exception\ConversionImpossibleException;
 
 class RecipeListRepository extends EntityRepository
 {
@@ -19,6 +20,16 @@ class RecipeListRepository extends EntityRepository
         array_walk_recursive($list, function($item) use(&$return) {
             $return[] = $item;
         });
-        return $qtyRepo->groupQuantitiesByIngredient($return);
+        return array_map(function($quantity) use ($qtyRepo) {
+            if($quantity->getIngredient()->getBaseUnit()) {
+                try {
+                    return $qtyRepo->getQtyInUnit($quantity, $quantity->getIngredient()->getBaseUnit());
+                } catch(ConversionImpossibleException $e) {
+                    // ignore if no conversion possible
+                }
+            }
+            return $quantity;
+        }, $qtyRepo->groupQuantitiesByIngredient($return));
+        
     }
 }

@@ -126,11 +126,15 @@ class RecipeDatabaseImporterTool
     private function importIngredients($ingredients)
     {
         foreach($ingredients as $ingredient) {
-            $in = $this->ingredientRepo->findOneByName($ingredient);
+            list($ingredientName, $preferredUnitSymbol) = sscanf($ingredient, '%[^(] (%[^)])');
+            $ingredientName = trim($ingredientName);
+            $unit = is_null($preferredUnitSymbol) ? null : $this->getUnit($preferredUnitSymbol);
+            $in = $this->ingredientRepo->findOneByName($ingredientName);
             if(!$in) {
-                $in = new Ingredient($ingredient, null);
+                $in = new Ingredient($ingredientName);
             }
-            $this->ingredients[$ingredient] = $in;
+            $in->setBaseUnit($unit);
+            $this->ingredients[$ingredientName] = $in;
         }
     }
 
