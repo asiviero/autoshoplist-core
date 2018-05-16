@@ -102,4 +102,12 @@ class Quantity
             $this->ingredient->getName()
         );
     }
+
+    /**
+     * Get the value of unit
+     */ 
+    public function getUnit()
+    {
+        return $this->unit;
+    }
 }

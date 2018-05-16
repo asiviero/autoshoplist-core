@@ -68,8 +68,8 @@ class ImporterToolTest extends DatabaseTest
         $flattened = $recipeRepo->getFlattenedQuantities($recipe);
         $factor = 5/3;
         foreach($flattened as $qty) {
-            $sauceQty = $sauce->getQuantityOf($qty->getIngredient()->getName());
-            $doughQty = $dough->getQuantityOf($qty->getIngredient()->getName());
+            $sauceQty = $sauce->fetchQuantityOf($qty->getIngredient()->getName());
+            $doughQty = $dough->fetchQuantityOf($qty->getIngredient()->getName());
             if($sauceQty) {
                 $amount = $sauceQty->getAmount() * $factor;
                 if($doughQty) {

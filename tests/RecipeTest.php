@@ -27,17 +27,17 @@ class RecipeTest extends TestCase
     }
 
     /**
-     * Test the method getQuantityOf in a recipe
+     * Test the method fetchQuantityOf in a recipe
      */
     public function testGetQtyOf()
     {
-        $qtyTomato = $this->recipe->getQuantityOf('tomato');
+        $qtyTomato = $this->recipe->fetchQuantityOf('tomato');
         $this->assertEquals(0.5, $qtyTomato->getAmount());
         $this->assertEquals('kg', $qtyTomato->getUnit()->getSymbol());
-        $qtySalt = $this->recipe->getQuantityOf('salt');
+        $qtySalt = $this->recipe->fetchQuantityOf('salt');
         $this->assertEquals(0.2, $qtySalt->getAmount());
         $this->assertEquals('kg', $qtySalt->getUnit()->getSymbol());
-        $qtyPotato = $this->recipe->getQuantityOf('potato');
+        $qtyPotato = $this->recipe->fetchQuantityOf('potato');
         $this->assertNull($qtyPotato);
     }
 
@@ -54,13 +54,13 @@ class RecipeTest extends TestCase
             new Quantity(0.3, $this->kg, $this->salt)
         ]);        
         $this->assertCount(3, $this->recipe->getQuantities());
-        $qtyTomato = $this->recipe->getQuantityOf('tomato');
+        $qtyTomato = $this->recipe->fetchQuantityOf('tomato');
         $this->assertEquals(0.9, $qtyTomato->getAmount());
         $this->assertEquals('kg', $qtyTomato->getUnit()->getSymbol());
-        $qtySalt = $this->recipe->getQuantityOf('salt');
+        $qtySalt = $this->recipe->fetchQuantityOf('salt');
         $this->assertEquals(0.3, $qtySalt->getAmount());
         $this->assertEquals('kg', $qtySalt->getUnit()->getSymbol());
-        $qtyOrigan = $this->recipe->getQuantityOf('origan');
+        $qtyOrigan = $this->recipe->fetchQuantityOf('origan');
         $this->assertEquals(1, $qtyOrigan->getAmount());
         $this->assertEquals('p', $qtyOrigan->getUnit()->getSymbol());
     }
