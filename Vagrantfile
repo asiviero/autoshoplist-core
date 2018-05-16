@@ -53,6 +53,8 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: <<-SHELL
      mysql -u homestead -psecret -e "create database autoshoplist";
      cd /vagrant;
+     cp .env.dist .env;
+     composer install;
      php bin/console doctrine:schema:create;
      php bin/console autoshoplist:import-database tests/testbase.yml
   SHELL
