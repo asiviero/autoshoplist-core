@@ -32,7 +32,7 @@ class QuantityRepository extends EntityRepository
                 $qty->getIngredient()
             );
         }
-        return new Quantity(array_product($weight), $unit, $qty->getIngredient());
+        return new Quantity(array_product($weight)*$qty->getAmount(), $unit, $qty->getIngredient());
     }
 
     public function sum(Quantity $a, Quantity $b)
