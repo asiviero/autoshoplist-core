@@ -6,6 +6,7 @@ use App\Entity\Ingredient;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
 use Doctrine\ORM\Tools\SchemaTool;
+use App\Entity\ConversionRule;
 
 class FeatureContext implements Context
 {
@@ -63,6 +64,23 @@ class FeatureContext implements Context
         }
         $em->flush($ingredient);
     }
+
+    /**
+     * @Given there are ConversionRule with:
+     */
+    public function thereAreConversionruleWith(TableNode $table)
+    {
+        $appKernel = $this->getKernel();
+        $em = $appKernel->getContainer()->get('doctrine.orm.entity_manager');
+        foreach($table->getHash() as $hash) {
+            $unitFrom = empty($hash['from']) ? null : $em->getRepository('App\Entity\Unit')->findOneBy(['symbol' => $hash['from']]);
+            $unitTo = empty($hash['to']) ? null : $em->getRepository('App\Entity\Unit')->findOneBy(['symbol' => $hash['to']]);
+            $conversionRule = new ConversionRule($unitFrom, $hash['factor'], $unitTo);
+            $em->persist($conversionRule);
+        }
+        $em->flush($conversionRule);
+    }
+
 
     /**
      * @Then there should be :expected :class with:

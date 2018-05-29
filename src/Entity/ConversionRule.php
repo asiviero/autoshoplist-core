@@ -19,21 +19,21 @@ class ConversionRule
 
     /**
      * @var Ingredient
-     * @ORM\ManyToOne(targetEntity="Ingredient")
+     * @ORM\ManyToOne(targetEntity="Ingredient", cascade="merge")
      * @ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")
      */     
     public $ingredient;
 
     /**
      * @var Unit
-     * @ORM\ManyToOne(targetEntity="Unit")
+     * @ORM\ManyToOne(targetEntity="Unit", cascade="merge")
      * @ORM\JoinColumn(name="from_unit_id", referencedColumnName="id")
      */     
     public $from;
 
     /**
-     * @var Ingredient
-     * @ORM\ManyToOne(targetEntity="Unit")
+     * @var Unit
+     * @ORM\ManyToOne(targetEntity="Unit", cascade="merge")
      * @ORM\JoinColumn(name="to_unit_id", referencedColumnName="id")
      */     
     public $to;
@@ -57,6 +57,11 @@ class ConversionRule
     public function getFrom()
     {
         return $this->from;
+    }
+
+    public function getIngredient()
+    {
+        return $this->ingredient;
     }
 
     /**
