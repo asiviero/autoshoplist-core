@@ -24,10 +24,7 @@ class RecipeList
     public $recipes;
 
     public function __construct(array $recipes) {
-        $recipes = array_map(function($recipe) {
-            return new RecipeListRecipe($recipe, $this);
-        }, $recipes);
-        $this->recipes = new ArrayCollection($recipes);
+        $this->setRecipes($recipes);
     }
 
 
@@ -39,6 +36,14 @@ class RecipeList
         return $this->recipes->map(function($item) {
             return $item->getRecipe();
         });        
+    }
+
+    public function setRecipes(array $recipes)
+    {
+        $recipes = array_map(function($recipe) {
+            return new RecipeListRecipe($recipe, $this);
+        }, $recipes);
+        $this->recipes = new ArrayCollection($recipes);
     }
 
     /**

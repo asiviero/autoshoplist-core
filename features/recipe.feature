@@ -106,7 +106,7 @@ Feature: Recipe Scenario
         And the JSON node "quantities[0].ingredient.name" should contain "tomato"
         And the JSON node "quantities[0].amount" should contain "300"
         And the JSON node "quantities[0].unit.symbol" should contain "kg"
-
+        
 
     Scenario: Delete Recipe
         When I add "Content-Type" header equal to "application/json"
