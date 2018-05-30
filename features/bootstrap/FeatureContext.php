@@ -2,11 +2,13 @@
 
 use App\Kernel;
 use App\Entity\Unit;
+use App\Entity\Recipe;
+use App\Entity\Quantity;
 use App\Entity\Ingredient;
+use App\Entity\ConversionRule;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
 use Doctrine\ORM\Tools\SchemaTool;
-use App\Entity\ConversionRule;
 
 class FeatureContext implements Context
 {
@@ -79,6 +81,39 @@ class FeatureContext implements Context
             $em->persist($conversionRule);
         }
         $em->flush($conversionRule);
+    }
+
+    /**
+     * @Given there are Recipes with:
+     */
+    public function thereAreRecipesWith(TableNode $table)
+    {
+        $appKernel = $this->getKernel();
+        $em = $appKernel->getContainer()->get('doctrine.orm.entity_manager');
+        foreach($table->getHash() as $hash) {
+            $recipe = new Recipe($hash['name'], [], $hash['isIngredient']);
+            $em->persist($recipe);
+        }
+        $em->flush($recipe);
+    }
+
+    /**
+     * @Given there Quantities for Recipe :id with:
+     */
+    public function thereQuantitiesForRecipeWith($id, TableNode $table)
+    {
+        $appKernel = $this->getKernel();
+        $em = $appKernel->getContainer()->get('doctrine.orm.entity_manager');
+        $recipe = $em->getRepository('App\Entity\Recipe')->find($id);
+        $qtyList = [];
+        foreach($table->getHash() as $hash) {
+            $unit = $em->getRepository('App\Entity\Unit')->findOneBy(['symbol' => $hash['unit']]);
+            $ingredient = $em->getRepository('App\Entity\Ingredient')->findOneBy(['name' => $hash['ingredient']]);
+            $qtyList[] = new Quantity($hash['amount'], $unit, $ingredient);
+        }
+        $recipe->replaceQuantities($qtyList);
+        $em->persist($recipe);
+        $em->flush();
     }
 
 

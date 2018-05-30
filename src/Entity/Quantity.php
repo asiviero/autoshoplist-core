@@ -23,7 +23,7 @@ class Quantity
 
     /**
      * @var Ingredient
-     * @ORM\ManyToOne(targetEntity="Ingredient")
+     * @ORM\ManyToOne(targetEntity="Ingredient", cascade="merge")
      * @ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")
      * @SWG\Property(ref=@Model(type=Ingredient::class))
      */     

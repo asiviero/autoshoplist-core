@@ -76,6 +76,15 @@ class Ingredient
     }
 
     /**
+     * Set the value of id
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
      * Get the value of name
      */ 
     public function getName()

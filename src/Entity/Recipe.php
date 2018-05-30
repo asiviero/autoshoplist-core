@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Quantity;
 use App\Entity\Ingredient;
 use Swagger\Annotations as SWG;
 use Doctrine\ORM\Mapping as ORM;
@@ -29,7 +30,7 @@ class Recipe
 
     /**
      * @var Quantity[]
-     * @ORM\OneToMany(targetEntity="Quantity", mappedBy="recipe", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Quantity", mappedBy="recipe", cascade={"persist", "merge"})
      * @SWG\Property(type="array", items={"$ref":"#/definitions/Quantity"})
      */
     public $quantities;
@@ -48,6 +49,9 @@ class Recipe
      */
     public $makes;
 
+    /**
+     * 
+     */
     public function __construct($name, $quantities = null, $isIngredient = false, Unit $ingredientUnit = null, $makeFactor = 1)
     {
         $this->name = $name;
@@ -62,6 +66,10 @@ class Recipe
         }
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
     /**
      * Get the value of isIngredient
      */ 
@@ -82,6 +90,12 @@ class Recipe
     public function getQuantities()
     {
         return $this->quantities;
+    }
+
+    public function addQuantities($qty)
+    {
+        $qty->setRecipe($this);
+        $this->quantities->add($qty);
     }
     
     public function fetchQuantityOf($ingredientName)
@@ -120,4 +134,23 @@ class Recipe
     {
         return $this->name;
     }
+
+    /**
+     * Set the value of id
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * Set the value of name
+     */ 
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
 }

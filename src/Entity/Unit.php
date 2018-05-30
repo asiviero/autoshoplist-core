@@ -101,4 +101,13 @@ class Unit
     {
         return $this->id;
     }
+
+    /**
+     * Set the value of id
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
 }
