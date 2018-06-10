@@ -19,19 +19,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
  * @Route("/api/ingredient")
  */
 class IngredientController extends Controller
-{
-    /**
-     * @Route("/", name="ingredient_index", methods="GET")
-     */
-    public function index(): Response
-    {
-        $ingredients = $this->getDoctrine()
-            ->getRepository(Ingredient::class)
-            ->findAll();
-
-        return new JsonResponse($ingredients);
-    }
-
+{        
     /**
      * @Route("/", name="ingredient_new", methods="POST")
      * @SWG\Parameter(
@@ -70,6 +58,16 @@ class IngredientController extends Controller
 
     /**
      * @Route("/{id}", name="ingredient_edit", methods="PATCH|PUT")
+     * @SWG\Parameter(
+     *     name="ingredient",
+     *     in="body",
+     *     @Model(type=Ingredient::class, groups={"request"})
+     * )
+     * @SWG\Response(
+     *     response=200,
+     *     description="Successful response",
+     *     @Model(type=Ingredient::class)
+     * )
      */
     public function edit(Request $request, Ingredient $ingredient, SerializerInterface $serializer): Response
     {

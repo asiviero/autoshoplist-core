@@ -11,6 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Swagger\Annotations as SWG;
+use Nelmio\ApiDocBundle\Annotation\Model;
 
 /**
  * @Route("/api/recipeList")
@@ -19,6 +21,16 @@ class RecipeListController extends Controller
 {
     /**
      * @Route("/", name="recipe_list_new", methods="POST")
+     * @SWG\Parameter(
+     *     name="recipeList",
+     *     in="body",
+     *     @Model(type=RecipeList::class, groups={"request"})
+     * )
+     * @SWG\Response(
+     *     response=200,
+     *     description="Successful response",
+     *     @Model(type=RecipeList::class)
+     * )
      */
     public function new(Request $request, SerializerInterface $serializer): Response
     {
@@ -36,6 +48,11 @@ class RecipeListController extends Controller
 
     /**
      * @Route("/{id}", name="recipe_list_show", methods="GET")
+     * @SWG\Response(
+     *     response=200,
+     *     description="Successful response",
+     *     @Model(type=RecipeList::class)
+     * )
      */
     public function show(RecipeList $recipeList, SerializerInterface $serializer): Response
     {
@@ -44,6 +61,16 @@ class RecipeListController extends Controller
 
     /**
      * @Route("/{id}", name="recipe_list_edit", methods="PATCH|PUT")
+     * @SWG\Parameter(
+     *     name="recipeList",
+     *     in="body",
+     *     @Model(type=RecipeList::class, groups={"request"})
+     * )
+     * @SWG\Response(
+     *     response=200,
+     *     description="Successful response",
+     *     @Model(type=RecipeList::class)
+     * )
      */
     public function edit(Request $request, RecipeList $recipeList, SerializerInterface $serializer): Response
     {

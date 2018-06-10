@@ -17,21 +17,20 @@ class Unit
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"request", "full"})
      */
     public $id;
 
     /**
      * @var string
      * @ORM\Column(type="string")
-     * @Groups({"request", "full"})
+     * @Groups({"request"})
      */
     public $name;
 
     /**
      * @var string
      * @ORM\Column(type="string")
-     * @Groups({"request", "full"})
+     * @Groups({"request"})
      */
     public $symbol;
 

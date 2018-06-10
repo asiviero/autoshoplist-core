@@ -36,7 +36,7 @@ class FeatureContext implements Context
         $appKernel->reboot($appKernel->getCacheDir());
         $em = $appKernel->getContainer()->get('doctrine.orm.entity_manager');
         $schemaTool = new SchemaTool($em);
-        $schemaTool->createSchema($em->getMetadataFactory()->getAllMetadata());
+        $schemaTool->createSchema($em->getMetadataFactory()->getAllMetadata());    
     }
 
     /**

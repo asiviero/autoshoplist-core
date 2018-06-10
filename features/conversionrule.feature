@@ -90,7 +90,7 @@ Feature: Conversion Rule related tests
                 },
                 "to" : {
                     "id" : 2,
-                    "name" : "g",
+                    "name" : "gram",
                     "symbol" : "g"
                 },
                 "factor" : 500

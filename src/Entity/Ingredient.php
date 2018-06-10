@@ -19,7 +19,6 @@ class Ingredient
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @SWG\Property()
-     * @Groups({"request"})
      */
     public $id;
 
@@ -43,7 +42,6 @@ class Ingredient
     /**
      * @ORM\OneToOne(targetEntity="Recipe", inversedBy="ingredient")
      * @ORM\JoinColumn(name="recipe_id", referencedColumnName="id")
-     * @SWG\Property(ref=@Model(type=Recipe::class), readOnly=true)
      */
     public $recipe;
 

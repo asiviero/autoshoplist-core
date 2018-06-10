@@ -22,19 +22,12 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 class UnitController extends Controller
 {
     /**
-     * @Route("/", name="unit_index", methods="GET")
-     */
-    public function index(): Response
-    {
-        $units = $this->getDoctrine()
-            ->getRepository(Unit::class)
-            ->findAll();
-
-        return new JsonResponse($units);
-    }
-
-    /**
      * @Route("/", name="unit_new", methods="POST")
+     * @SWG\Parameter(
+     *     name="unit",
+     *     in="body",
+     *     @Model(type=Unit::class, groups={"request"})
+     * )
      * @SWG\Response(
      *     response=200,
      *     description="Successful response",
@@ -65,6 +58,16 @@ class UnitController extends Controller
 
     /**
      * @Route("/{id}", name="unit_edit", methods="PATCH|PUT")
+     * @SWG\Parameter(
+     *     name="unit",
+     *     in="body",
+     *     @Model(type=Unit::class, groups={"request"})
+     * )
+     * @SWG\Response(
+     *     response=200,
+     *     description="Successful response",
+     *     @Model(type=Unit::class)
+     * )
      */
     public function edit(Request $request, Unit $unit, SerializerInterface $serializer): Response
     {

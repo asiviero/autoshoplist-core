@@ -2,11 +2,16 @@
 
 namespace App\Entity;
 
+use App\Entity\Ingredient;
+use Swagger\Annotations as SWG;
 use Doctrine\ORM\Mapping as ORM;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ConversionRuleRepository")
  * @ORM\Table(name="conversion_rule")
+ * @SWG\Definition()
  */
 class ConversionRule
 {
@@ -14,6 +19,7 @@ class ConversionRule
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @SWG\Property()
      */
     public $id;
 
@@ -21,6 +27,8 @@ class ConversionRule
      * @var Ingredient
      * @ORM\ManyToOne(targetEntity="Ingredient", cascade="merge")
      * @ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")
+     * @SWG\Property()
+     * @Groups({"request"})
      */     
     public $ingredient;
 
@@ -28,6 +36,8 @@ class ConversionRule
      * @var Unit
      * @ORM\ManyToOne(targetEntity="Unit", cascade="merge")
      * @ORM\JoinColumn(name="from_unit_id", referencedColumnName="id")
+     * @SWG\Property()
+     * @Groups({"request"})
      */     
     public $from;
 
@@ -35,11 +45,15 @@ class ConversionRule
      * @var Unit
      * @ORM\ManyToOne(targetEntity="Unit", cascade="merge")
      * @ORM\JoinColumn(name="to_unit_id", referencedColumnName="id")
+     * @SWG\Property()
+     * @Groups({"request"})
      */     
     public $to;
 
     /**
      * @ORM\Column(type="float")
+     * @SWG\Property()
+     * @Groups({"request"})
      */
     public $factor;
 
@@ -88,6 +102,20 @@ class ConversionRule
     public function setFactor($factor)
     {
         $this->factor = $factor;
+
+        return $this;
+    }
+
+    
+
+    /**
+     * Set the value of ingredient
+     *
+     * @return  self
+     */ 
+    public function setIngredient(Ingredient $ingredient)
+    {
+        $this->ingredient = $ingredient;
 
         return $this;
     }

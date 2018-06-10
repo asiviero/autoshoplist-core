@@ -28,7 +28,7 @@ ingredients:
   - yeast
   - leek
   - potato
-  - parsley
+  - parsley (kg)
   - carrot
   - onion
   - celery
@@ -69,6 +69,62 @@ ingredients:
   - dried mushroom
   - ground meat
   - brocoli
+  - porcini
+  - tarragon
+  - lime juice
+  - coconut aminos
+  - fish sauce
+  - tapioca flour
+  - flank steak
+  - fresh ginger
+  - caper
+  - coconut oil
+  - raw cashew
+  - clarified butter
+  - cherry tomato
+  - curry powder
+  - spinach
+  - chicken stock
+  - origan
+  - summer squash
+  - sirloin steak
+  - white mushroom
+  - trout fillet
+  - dry mustard
+  - coriander
+  - chicken broth
+  - shallot
+  - bacon
+  - boneless beef (kg)
+  - chive
+  - chicken breast
+  - smoked paprika
+  - cayenne pepper
+  - coriander
+  - turnip
+  - aspargus
+  - ground cumin
+  - mint leaf
+  - lime
+  - habanero chile
+  - whole chicken
+  - sweet potato (kg)
+  - orange juice
+  - chipotle chile powder
+  - pork chop
+  - honey
+  - jalapeno
+  - ancho
+  - cabbage
+  - cider vinegar
+  - almond flour
+  - tapioca flour
+  - coconut flour
+  - ground clove
+  - cumin
+  - cinnamon
+  - boneless steak
+  - red wine vinegar
 conversion rules:
   - 1 un = 0.4 kg (tomato)
   - 1 un = 200 g (potato)
@@ -80,6 +136,8 @@ conversion rules:
   - 1 un = 2 tbsp (parsley)
   - 1 tbsp = 5 g (parmesan)
   - 1 un = 50 g (carrot)
+  - 1 lb = 450 g
+  - 1 tbsp = 3 tsp
 recipes:
   tomato sauce:
     ingredient list:
@@ -258,3 +316,168 @@ recipes:
       - 1 tbsp olive oil
       - 0.03 kg salt
       - 0.03 kg pepper
+  porcini with tarragon:
+    ingredient list:
+      - 8 un porcini
+      - 0.25 cup butter
+      - 1 tsp tarragon
+      - 1 un lemon
+      - 0.03 kg salt
+      - 0.03 kg black pepper
+  spicy korean-style stir-fried beef:
+    ingredient list:
+      - 0.5 cup coconut aminos
+      - 4 tbsp lime juice
+      - 2 tbsp fish sauce
+      - 1.5 tsp tapioca flour
+      - 1 lb flank steak
+      - 5 un scallions
+      - 4 un garlic
+      - 1 tbsp fresh ginger
+      - 1.5 tsp red pepper
+      - 3 tbsp coconut oil
+      - 3 un carrot
+  umbricelli con salsa di pomodoro e capperi:
+    ingredient list:
+      - 600 ml tomato sauce
+      - 1 qty pasta dough
+      - 2 un garlic
+      - 2 tbsp caper
+      - 4 tbsp olive oil
+      - 0.04 kg parmesan
+  spiced breakfast casserole with tomatoes and spinach:
+    ingredient list:
+      - 0.5 cup raw cashew
+      - 3 tbsp clarified butter
+      - 1 un onion
+      - 0.03 kg salt
+      - 400 g cherry tomato
+      - 2 tsp curry powder
+      - 400 g spinach
+      - 0.5 cup chicken broth
+      - 8 un egg
+  summer squash spaghetti with roasted cherry tomato sauce:
+    ingredient list:
+      - 800 g cherry tomato
+      - 1 un shallot
+      - 3 tbsp olive oil
+      - 5 un garlic
+      - 1 tbsp origan
+      - 1 tbsp tomato paste
+      - 0.25 tsp red pepper
+      - 1.2 kg summer squash
+      - 0.25 cup basil
+  steak tips with mushroom-onion gravy:
+    ingredient list:
+      - 700 g sirloin steak
+      - 1 tbsp olive oil
+      - 400 g white mushroom
+      - 1 un onion
+      - 100 g porcini
+      - 1 tbsp tomato paste
+      - 2 un garlic
+      - 0.5 tsp thyme
+      - 1 tbsp parsley
+  seared trout with brussels sprouts and bacon:
+    ingredient list:
+      - 1.5 lb brussels sprouts
+      - 4 un bacon
+      - 1 un shallot
+      - 2 un garlic
+      - 0.5 tsp thyme
+      - 1 tsp coriander
+      - 0.5 tsp dry mustard
+      - 4 un trout fillet
+      - 0.25 cup clarified butter
+  latin-style chicken and cauliflower rice:
+    ingredient list:
+      - 2 un cauliflower
+      - 500 g chicken breast
+      - 3 tbsp olive oil
+      - 2 un onion
+      - 2 tbsp tomato paste
+      - 2 tbsp origan
+      - 4 un garlic
+      - 4 tsp smoked paprika
+      - 0.25 tsp cayenne pepper
+      - 2 cup chicken broth
+      - 6 tbsp coriander  
+  french pot roast with mustard parlsey sauce:
+    ingredient list:
+      - 4 lb boneless beef
+      - 1 un parsley
+      - 0.25 cup chive
+      - 0.25 cup dijon mustard
+      - 3 tbsp white wine vinegar
+      - 0.03 kg salt
+      - 0.03 kg pepper
+      - 1 un onion
+      - 1 un celery
+      - 3 un bay leaf
+      - 1 lb turnip
+      - 6 un carrot
+      - 1 lb aspargus
+  peruvian roast chicken with sweet potatoes:
+    ingredient list:
+      - 0.25 cup mint leaf
+      - 6 un garlic 
+      - 1 tbsp olive oil
+      - 1 tbsp ground cumin
+      - 1 tbsp honey
+      - 2 tsp smoked paprika
+      - 2 tsp origan
+      - 2 un lime
+      - 1 tsp habanero chile
+      - 1 un whole chicken
+      - 2 lb sweet potato
+  orange chipotle-glazed pork chops:
+    ingredient list:
+      - 0.66 cup orange juice
+      - 1.5 tsp sugar
+      - 1 un lime
+      - 1 tsp chipotle chile powder
+      - 500 g pork chop
+      - 1 tbsp olive oil
+  mashed sweet potatoes:
+    ingredient list:
+      - 3 lb sweet potato
+      - 3 tbsp clarified butter
+  paleo wrap:
+    ingredient list:
+      - 2 cup almond flour
+      - 0.75 cup tapioca flour
+      - 0.25 cup coconut flour
+      - 2 tsp salt
+      - 2 un egg
+      - 3 tbsp olive oil
+    is ingredient:
+      makes 12 un
+  shredded beef tacos with cabbage slaw:
+    ingredient list:
+      - 1.25 cup cider vinegar
+      - 4 tsp origan
+      - 4 cup cabbage
+      - 2 un carrot
+      - 1 un jalapeno
+      - 4 un ancho
+      - 3 tbsp tomato paste
+      - 6 un garlic
+      - 1 tbsp cumin
+      - 0.75 tsp cinnamon
+      - 0.5 tsp ground clove
+      - 3 un bay leaf
+      - 1 un onion
+      - 2 lb boneless steak
+      - 1 cup coriander
+      - 12 un paleo wrap
+  rustic braised chicken with mushrooms:
+    ingredient list:
+      - 4 un bacon
+      - 2 un chicken breast
+      - 1 un white mushroom      
+      - 1 un onion
+      - 0.25 cup tomato paste
+      - 3 un garlic
+      - 2 tsp thyme
+      - 0.25 cup parsley
+      - 1 tbsp red wine vinegar

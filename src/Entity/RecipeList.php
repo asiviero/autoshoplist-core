@@ -2,12 +2,16 @@
 
 namespace App\Entity;
 
+use Swagger\Annotations as SWG;
 use Doctrine\ORM\Mapping as ORM;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RecipeListRepository")
  * @ORM\Table(name="recipe_list")
+ * @SWG\Definition()
  */
 class RecipeList
 {
@@ -15,11 +19,14 @@ class RecipeList
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @SWG\Property()
      */
     public $id;
 
     /**
      * @ORM\OneToMany(targetEntity="RecipeListRecipe", mappedBy="recipeList", cascade={"persist"})
+     * @SWG\Property(type="array", items={"$ref":"#/definitions/Recipe"})
+     * @Groups({"request"})
      */
     public $recipes;
 

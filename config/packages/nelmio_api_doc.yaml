@@ -6,7 +6,7 @@ nelmio_api_doc:
             version: 1.0.0
     areas: # to filter documented areas
         path_patterns:
-            #- ^/api(?!/(doc|doc.json)?$) # Accepts routes under /api except /api/doc
+            - ^/api(?!/(doc|doc.json)?$) # Accepts routes under /api except /api/doc
             # - ^/api(?!/ingredient$) # Accepts routes under /api except /api/doc
-            - api/unit/
-            - api/ingredient/
+            #- api/unit/
+            #- api/ingredient/

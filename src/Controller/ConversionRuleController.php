@@ -10,6 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Swagger\Annotations as SWG;
+use Nelmio\ApiDocBundle\Annotation\Model;
 
 /**
  * @Route("/api/conversionRule")
@@ -18,6 +20,16 @@ class ConversionRuleController extends Controller
 {
     /**
      * @Route("/", name="conversion_rule_new", methods="POST")
+     * @SWG\Parameter(
+     *     name="conversionRule",
+     *     in="body",
+     *     @Model(type=ConversionRule::class, groups={"request"})
+     * )
+     * @SWG\Response(
+     *     response=200,
+     *     description="Successful response",
+     *     @Model(type=ConversionRule::class)
+     * )
      */
     public function new(Request $request, SerializerInterface $serializer): Response
     {
@@ -30,6 +42,11 @@ class ConversionRuleController extends Controller
 
     /**
      * @Route("/{id}", name="conversion_rule_show", methods="GET")
+     * @SWG\Response(
+     *     response=200,
+     *     description="Successful response",
+     *     @Model(type=ConversionRule::class)
+     * )
      */
     public function show(ConversionRule $conversionRule): Response
     {
@@ -38,6 +55,16 @@ class ConversionRuleController extends Controller
 
     /**
      * @Route("/{id}", name="conversion_rule_edit", methods="PATCH|PUT")
+     * @SWG\Parameter(
+     *     name="conversionRule",
+     *     in="body",
+     *     @Model(type=ConversionRule::class, groups={"request"})
+     * )
+     * @SWG\Response(
+     *     response=200,
+     *     description="Successful response",
+     *     @Model(type=ConversionRule::class)
+     * )
      */
     public function edit(Request $request, ConversionRule $conversionRule, SerializerInterface $serializer): Response
     {

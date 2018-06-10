@@ -6,11 +6,10 @@ use Swagger\Annotations as SWG;
 use Doctrine\ORM\Mapping as ORM;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Symfony\Component\Serializer\Annotation\Groups;
-//* @SWG\Definition(properties={"id","ingredient","unit","amount"})
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\QuantityRepository")
  * @ORM\Table(name="quantity")
+ * @SWG\Definition()
  */
 class Quantity
 {
@@ -26,6 +25,7 @@ class Quantity
      * @ORM\ManyToOne(targetEntity="Ingredient", cascade="merge")
      * @ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")
      * @SWG\Property(ref=@Model(type=Ingredient::class))
+     * @Groups({"request"})
      */     
     public $ingredient;
 
@@ -34,11 +34,13 @@ class Quantity
      * @ORM\ManyToOne(targetEntity="Unit", cascade="merge")
      * @ORM\JoinColumn(name="unit_id", referencedColumnName="id")
      * @SWG\Property(ref=@Model(type=Unit::class)) 
+     * @Groups({"request"})
      */     
     public $unit;
 
     /**
      * @ORM\Column(type="float")
+     * @Groups({"request"})
      */
     public $amount;
 

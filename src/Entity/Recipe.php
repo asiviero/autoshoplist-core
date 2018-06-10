@@ -8,11 +8,12 @@ use Swagger\Annotations as SWG;
 use Doctrine\ORM\Mapping as ORM;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RecipeRepository")
  * @ORM\Table(name="recipe")
- * @SWG\Definition(definition="Recipe")
+ * @SWG\Definition()
  */
 class Recipe
 {
@@ -20,11 +21,14 @@ class Recipe
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @SWG\Property()
      */
     public $id;
 
     /**
      * @ORM\Column(type="string")
+     * @SWG\Property()
+     * @Groups({"request"})
      */
     public $name;
 
@@ -32,13 +36,15 @@ class Recipe
      * @var Quantity[]
      * @ORM\OneToMany(targetEntity="Quantity", mappedBy="recipe", cascade={"persist", "merge"})
      * @SWG\Property(type="array", items={"$ref":"#/definitions/Quantity"})
+     * @Groups({"request"})
      */
     public $quantities;
 
     /**
      * @var Ingredient
-     * @ORM\OneToOne(targetEntity="Ingredient", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Ingredient", cascade={"persist"}, mappedBy="recipe")
      * @ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")
+     * @SWG\Property()
      */
     public $ingredient;
 
@@ -46,12 +52,11 @@ class Recipe
      * @var Quantity
      * @ORM\OneToOne(targetEntity="Quantity", cascade={"persist"})
      * @ORM\JoinColumn(name="quantity_id", referencedColumnName="id")
+     * @SWG\Property()
+     * @Groups({"request"})
      */
     public $makes;
 
-    /**
-     * 
-     */
     public function __construct($name, $quantities = null, $isIngredient = false, Unit $ingredientUnit = null, $makeFactor = 1)
     {
         $this->name = $name;

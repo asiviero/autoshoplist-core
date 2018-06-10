@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use Swagger\Annotations as SWG;
+use Nelmio\ApiDocBundle\Annotation\Model;
 use App\Entity\Recipe;
 use App\Entity\Quantity;
 use App\Form\RecipeType;
@@ -20,6 +22,16 @@ class RecipeController extends Controller
 {
     /**
      * @Route("/", name="recipe_new", methods="POST")
+     * @SWG\Parameter(
+     *     name="recipe",
+     *     in="body",
+     *     @Model(type=Recipe::class, groups={"request"})
+     * )
+     * @SWG\Response(
+     *     response=200,
+     *     description="Successful response",
+     *     @Model(type=Recipe::class)
+     * )
      */
     public function new(Request $request, SerializerInterface $serializer): Response
     {
