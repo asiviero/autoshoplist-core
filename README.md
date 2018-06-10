@@ -39,14 +39,24 @@ recipes will be summed recursively and generate a single list, grouped by
 `Ingredient` and, if possible, in the preferred `Unit` for the ingredient:
 
 ```
-$ php bin/console autoshoplist:recipe-list:generate "fettucine al pomodoro"
+$ php bin/console autoshoplist:recipe-list:generate "fettucine al pomodoro" "rustic braised chicken with mushrooms"
 Generated Recipe List with Id: 1
 2.00 cup flour
 3.00 un egg
 0.10 kg salt
 8.00 un tomato
 0.06 l olive oil
+4.00 un bacon
+2.00 un chicken breast
+1.00 un white mushroom
+1.00 un onion
+0.25 cup tomato paste
+3.00 un garlic
+2.00 tsp thyme
+0.25 cup parsley
+1.00 tbsp red wine vinegar
 ```
+Add more recipes by name to the end of the command to generate larger lists.
 
 ## Importing the Database
 
