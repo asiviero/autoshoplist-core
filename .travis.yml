@@ -4,4 +4,3 @@ php:
 install: composer install
 script:
   - ./vendor/bin/simple-phpunit tests/
-  - php vendor/bin/behat features/
