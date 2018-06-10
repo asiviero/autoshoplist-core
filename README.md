@@ -1,5 +1,7 @@
 # autoshoplist-core
 
+[![Build Status](https://travis-ci.org/asiviero/autoshoplist-core.svg?branch=master)](https://travis-ci.org/asiviero/autoshoplist-core)
+
 Base code and API for autoshoplist, a project to generate shopping lists
 based on recipes and their quantities. A shopping list will be the sum of all
 quantities of ingredients in a list of recipes, taking into account some 
