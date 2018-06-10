@@ -1,6 +1,7 @@
 language: php
 php:
   - "7.1"
-install: composer install
+install: composer install --dev
 script:
+  - composer install --dev && php vendor/bin/behat features/
   - ./vendor/bin/simple-phpunit tests/
