@@ -32,7 +32,7 @@ The following entities are the base of this project:
 - `Ingredient`: An ingredient, which may be a recipe as well, and possibly with a preferred `Unit`
 - `ConversionRule`: A conversion rule between 2 units, and possibly restricted by ingredient
 - `Quantity`: A combination of `Ingredient`, `Unit` and an amount
-- `Recipe`: A list of `Quantity`, which may also be an ingredient
+- `Recipe`: A list of `Quantity`, which may also be an ingredient, and may have a code to be more easily identified on CLI list generation
 - `RecipeList`: A list of `Recipe`
 
 Through the CLI, a recipe list is what generates a shopping list, via the 
@@ -58,7 +58,7 @@ Generated Recipe List with Id: 1
 0.25 cup parsley
 1.00 tbsp red wine vinegar
 ```
-Add more recipes by name to the end of the command to generate larger lists.
+Add more recipes by name or code to the end of the command to generate larger lists.
 
 ## Importing the Database
 
@@ -71,6 +71,7 @@ folder. The syntax for each section is:
 - `conversion rule`: 1 unit.symbol = factor unit.symbol [(ingredient.name)]
 - `recipes`:
     - name:
+        - `code`: string 
         - `ingredient list`: amount unit.symbol ingredient.name
         - `is ingredient`: makes amount unit.symbol
 
