@@ -33,6 +33,13 @@ class Recipe
     public $name;
 
     /**
+     * @ORM\Column(type="string", nullable=true, unique=true)
+     * @SWG\Property()
+     * @Groups({"request"})
+     */
+    public $code;
+
+    /**
      * @var Quantity[]
      * @ORM\OneToMany(targetEntity="Quantity", mappedBy="recipe", cascade={"persist", "merge"})
      * @SWG\Property(type="array", items={"$ref":"#/definitions/Quantity"})
@@ -158,4 +165,24 @@ class Recipe
         return $this;
     }
 
+
+    /**
+     * Get the value of code
+     */ 
+    public function getCode()
+    {
+        return $this->code;
+    }
+
+    /**
+     * Set the value of code
+     *
+     * @return  self
+     */ 
+    public function setCode($code)
+    {
+        $this->code = $code;
+
+        return $this;
+    }
 }

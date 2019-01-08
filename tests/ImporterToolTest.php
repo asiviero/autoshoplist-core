@@ -35,10 +35,13 @@ class ImporterToolTest extends DatabaseTest
         $recipeRepo = $this->entityManager->getRepository('App\Entity\Recipe');
         $this->assertCount(3, $recipeRepo->findAll());
         $tomatoSauce = $recipeRepo->findOneByName('tomato sauce');
+        $this->assertEquals($tomatoSauce->getCode(), 't1');
         $this->assertCount(3, $tomatoSauce->getQuantities());
         $pastaDough = $recipeRepo->findOneByName('pasta dough');
-        $this->assertCount(3, $pastaDough->getQuantities());
+        $this->assertEquals($pastaDough->getCode(), 't2');
+        $this->assertCount(3, $pastaDough->getQuantities());        
         $fetuccine = $recipeRepo->findOneByName('fettucine al pomodoro');
+        $this->assertEquals($fetuccine->getCode(), null);
         $this->assertCount(2, $fetuccine->getQuantities());        
 
     }

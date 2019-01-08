@@ -21,6 +21,7 @@ conversion rules:
   - 1 cup = 0.2 kg (flour)
 recipes:
   tomato sauce:
+    code: t1
     ingredient list:
       - 4 un tomato
       - 0.03 kg salt
@@ -28,6 +29,7 @@ recipes:
     is ingredient:
       makes 300 ml
   pasta dough:
+    code: t2
     ingredient list:
       - 2 cup flour
       - 3 un egg

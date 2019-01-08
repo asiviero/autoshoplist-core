@@ -12,6 +12,7 @@ conversion rules:
   - 1 qty = 3 pc (pasta dough)
 recipes:
   tomato sauce:
+    code: a1
     ingredient list:
       - 6 un tomato
       - 0.03 kg salt
@@ -19,5 +20,6 @@ recipes:
     is ingredient:
       makes 300 ml
   mashed potatoes:
+    code: b2
     ingredient list:
       - 4 un potato

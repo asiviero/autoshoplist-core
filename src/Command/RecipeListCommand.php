@@ -29,6 +29,9 @@ class RecipeListCommand extends ContainerAwareCommand
         $recipes = $input->getArgument('recipes');
         $list = array_filter(array_map(function($recipe) use($recipeRepo) {
             $r = $recipeRepo->findOneByName($recipe);
+            if(!$r) {
+                $r = $recipeRepo->findOneByCode($recipe);
+            }
             return $r;
         }, $recipes));
 

@@ -158,7 +158,7 @@ class RecipeDatabaseImporterTool
                     $em->remove($item);
                 });
                 $re->replaceQuantities($ingredientList);
-                $this->recipes[] = $re;
+                
             } else {
                 $isIngredient = false;
                 $unit = null;
@@ -168,12 +168,15 @@ class RecipeDatabaseImporterTool
                     list($factor, $unit) = sscanf($recipe['is ingredient'], 'makes %f %s');
                     $unit = $this->getUnit($unit);
                 }
-                $recipe = new Recipe($name, $ingredientList, $isIngredient, $unit, $factor);
-                $this->recipes[] = $recipe;
-                if($recipe->isIngredient()) {
-                    $this->ingredients[$name] = $recipe->getIngredient();
+                $re = new Recipe($name, $ingredientList, $isIngredient, $unit, $factor);
+                if($re->isIngredient()) {
+                    $this->ingredients[$name] = $re->getIngredient();
                 }
             }
+            if(isset($recipe['code'])) {
+                $re->setCode($recipe['code']);
+            }
+            $this->recipes[] = $re;
 
         }
     }
